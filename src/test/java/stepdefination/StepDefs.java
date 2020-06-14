@@ -1,58 +1,62 @@
 package stepdefination;
 
+import io.cucumber.java.After;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StepDefs {
 
     WebDriver driver;
+/*
+    @Before
+    public void login(){
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+    }
+    */
 
-    @Given("I navigate to www.ebay.com")
-    public void i_navigate_to_www_ebay_com() {
+    @Given("I navigate to {string} page")
+    public void i_navigate_to_page (String string) {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get(string);
 
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        driver.manage().window().fullscreen();
-        driver.get("https://demo.broadleafcommerce.org/");
     }
 
-    @Given("I click on login button")
+    @And("I click on login button")
     public void i_click_on_login_button() throws InterruptedException {
         driver.findElement(By.xpath("(//*[@href='/login'])[1]")).click();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
     }
 
-    @When("I enter UserID and Password")
-    public void i_enter_UserID_and_Password() {
-        driver.findElement(By.xpath("//*[@id='username']")).sendKeys("khanshabb111@gmail.com");
-        driver.findElement(By.xpath("(//*[@id='password'])[1]")).sendKeys("Agustina2426");
+    @When("^I enter (.*?) and (.*?)$")
+    public void i_enter_UserID_and_Password(String strOne, String strTwo) {
+        driver.findElement(By.xpath("//*[@id='username']")).sendKeys(strOne);
+        driver.findElement(By.xpath("(//*[@id='password'])[1]")).sendKeys(strTwo);
         driver.findElement(By.xpath("(//button[@type='submit'])[2]")).click();
     }
 
-    @Then("I should go to home page")
+    @And("I should go to home page")
     public void i_should_go_to_home_page() {
-        // Write code here that turns the phrase above into concrete actions
+
     }
 
-    @When("I enter wrong UserID and Password")
-    public void i_enter_wrong_UserID_and_Password() {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @Then("I should see the error message")
-    public void i_should_see_the_error_message() {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @Then("I close the browser")
-    public void i_close_the_browser() {
+    @Then("I click on Green Ghost")
+    public void i_click_green_ghost() throws InterruptedException {
+        driver.findElement(By.linkText("Green Ghost")).click();
+        Thread.sleep(2000);
+        System.out.println("clicked on Product");
         driver.quit();
     }
 
-
-}
+    //@After
+    //public void logOut(){
+        //driver.quit();
+    }
