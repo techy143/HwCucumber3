@@ -16,7 +16,7 @@ public class StepDefs {
     WebDriver driver;
 /*
     @Before
-    public void login(){
+    public void setup(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
     }
