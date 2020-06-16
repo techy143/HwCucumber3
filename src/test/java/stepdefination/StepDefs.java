@@ -33,7 +33,7 @@ public class StepDefs {
     @And("I click on login button")
     public void i_click_on_login_button() throws InterruptedException {
         driver.findElement(By.xpath("(//*[@href='/login'])[1]")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
     }
 
     @When("^I enter (.*?) and (.*?)$")
@@ -51,7 +51,7 @@ public class StepDefs {
     @Then("I click on Green Ghost")
     public void i_click_green_ghost() throws InterruptedException {
         driver.findElement(By.linkText("Green Ghost")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         System.out.println("clicked on Product");
         driver.quit();
     }
