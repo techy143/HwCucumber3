@@ -14,19 +14,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class StepDefs {
 
     WebDriver driver;
-/*
-    @Before
-    public void setup(){
+
+   /* @Before
+    public void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-    }
-    */
+    } */
 
     @Given("I navigate to {string} page")
-    public void i_navigate_to_page (String string) {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get(string);
+    public void i_navigate_to_page(String string) {
+       WebDriverManager.chromedriver().setup();
+       driver = new ChromeDriver();
+       driver.get(string);
 
     }
 
@@ -56,7 +55,8 @@ public class StepDefs {
         driver.quit();
     }
 
-    //@After
-    //public void logOut(){
-        //driver.quit();
-    }
+   /* @After
+    public void logOut() {
+        driver.quit();
+    } */
+}
